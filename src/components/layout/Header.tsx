@@ -17,7 +17,7 @@ export function BreadcrumbHeader() {
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center bg-background px-4 lg:px-6">
       <div className="flex h-full items-center gap-3">
-        <SidebarTrigger/>
+        <SidebarTrigger />
         <div data-orientation="vertical" className="shrink-0 bg-border w-[1px] h-4"></div>
 
         <nav className="flex items-center text-sm">
@@ -59,29 +59,33 @@ export function BreadcrumbHeader() {
 }
 
 function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
-  // Skip empty segments and remove trailing slashes
+  // Split the pathname into segments
   const paths = pathname.split("/").filter(Boolean)
-
   if (paths.length === 0) return []
 
   const breadcrumbs: BreadcrumbItem[] = []
   let currentPath = ""
 
-  // Process each path segment
-  paths.forEach((segment, index) => {
+  paths.forEach((segment) => {
     currentPath += `/${segment}`
 
     // Find matching menu item
     const menuItem = findMenuItemByPath(currentPath)
-
     if (menuItem) {
+      // If the menu item has children and the current path exactly matches the parent's path,
+      // set breadcrumbPath to the first child's path.
+      const breadcrumbPath =
+        menuItem.children && menuItem.children.length > 0 && currentPath === menuItem.path
+          ? menuItem.children[0].path
+          : menuItem.path
+
       breadcrumbs.push({
         label: menuItem.label,
-        path: menuItem.path,
+        path: breadcrumbPath,
         icon: menuItem.icon,
       })
     } else {
-      // For paths not in the menu, create a formatted label
+      // For paths not defined in the menu, create a formatted label.
       breadcrumbs.push({
         label: formatBreadcrumbLabel(segment),
         path: currentPath,
@@ -93,15 +97,14 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
 }
 
 function findMenuItemByPath(path: string) {
-  // Recursively search through menu items and their children
+  // Search through the menu items for a matching path.
   return menuItems.find((item) => item.path === path)
 }
 
 function formatBreadcrumbLabel(segment: string): string {
-  // Convert kebab-case or camelCase to Title Case with spaces
+  // Convert kebab-case or camelCase to Title Case with spaces.
   return segment
     .replace(/-/g, " ")
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .replace(/\b\w/g, (char) => char.toUpperCase())
 }
-
