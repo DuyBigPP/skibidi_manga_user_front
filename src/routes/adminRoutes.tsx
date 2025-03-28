@@ -15,6 +15,7 @@ export function AdminRoutes() {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="menu1" element={<Navigate to="/menu1/submenu1" replace />} />
           <Route path="menu1/submenu1" element={<Submenu1 />} />
           <Route path="menu1/submenu2" element={<Submenu2 />} />
         </Route>

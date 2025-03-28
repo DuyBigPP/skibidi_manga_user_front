@@ -65,23 +65,29 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
 
   const breadcrumbs: BreadcrumbItem[] = []
   let currentPath = ""
+  
+  // Lưu trữ đường dẫn đã xử lý để tránh lặp lại item
+  const processedPaths = new Set<string>()
 
   paths.forEach((segment) => {
     currentPath += `/${segment}`
+    
+    // Bỏ qua nếu đường dẫn này đã được xử lý
+    if (processedPaths.has(currentPath)) {
+      return
+    }
+    
+    // Đánh dấu đường dẫn đã được xử lý
+    processedPaths.add(currentPath)
 
     // Find matching menu item
     const menuItem = findMenuItemByPath(currentPath)
     if (menuItem) {
-      // If the menu item has children and the current path exactly matches the parent's path,
-      // set breadcrumbPath to the first child's path.
-      const breadcrumbPath =
-        menuItem.children && menuItem.children.length > 0 && currentPath === menuItem.path
-          ? menuItem.children[0].path
-          : menuItem.path
-
+      // Nếu đây là menu cha có children, thêm vào với đúng đường dẫn của nó
+      // mà không tự động chuyển hướng đến submenu đầu tiên
       breadcrumbs.push({
         label: menuItem.label,
-        path: breadcrumbPath,
+        path: menuItem.path,
         icon: menuItem.icon,
       })
     } else {
