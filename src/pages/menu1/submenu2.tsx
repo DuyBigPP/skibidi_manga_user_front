@@ -1,7 +1,7 @@
 const submenu2 = () => {
     return (
         <div>
-        <h1>Submenu1</h1>
+        <h1>Submenu2222</h1>
         </div>
     );
 };
