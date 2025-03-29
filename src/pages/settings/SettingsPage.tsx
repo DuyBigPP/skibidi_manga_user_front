@@ -1,10 +1,41 @@
+import { ModeToggle } from "@/components/ui/mode-toggle"
+import { useTheme } from "@/components/ui/theme-provider"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
 export default function SettingsPage() {
-    return (
+  const { theme } = useTheme()
+
+  return (
+    <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold mb-4">Settings</h1>
-        <div className="p-4 border rounded shadow">
-          [Settings Form Placeholder]
-        </div>
+        <h1 className="text-2xl font-bold">Settings</h1>
+        <p className="text-muted-foreground">
+          Manage your account settings and preferences.
+        </p>
       </div>
-    )
-  }
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Appearance</CardTitle>
+          <CardDescription>
+            Customize how the app looks on your device
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex items-center justify-between">
+          <div className="space-y-1">
+            <p className="text-sm font-medium">Theme</p>
+            <p className="text-sm text-muted-foreground">
+              Select your preferred theme for the application
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground capitalize">
+              {theme}
+            </span>
+            <ModeToggle />
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
