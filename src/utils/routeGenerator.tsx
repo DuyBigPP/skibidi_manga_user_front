@@ -6,12 +6,12 @@ import { MenuItem } from "@/config/menu"
 const pathToComponentPath = (path: string): string => {
   // Remove leading slash and convert to component path
   const cleanPath = path.replace(/^\/+/, '')
-  return `../pages/${cleanPath}/index.tsx`
+  return `../pages/${cleanPath}/index`
 }
 
-// Function to dynamically import component
+// Function to dynamically import component with Vite ignore
 const importComponent = (componentPath: string) => {
-  return React.lazy(() => import(componentPath))
+  return React.lazy(() => import(/* @vite-ignore */ componentPath))
 }
 
 // Generate routes recursively from menu items
