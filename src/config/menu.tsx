@@ -12,6 +12,7 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
   { label: "Dashboard", path: "/dashboard", icon: <Home size={16} /> },
   { label: "Analytics", path: "/analytics", icon: <BarChart2 size={16} /> },
+  { label: "Lmao", path: "/lmao", icon: <List size={16} /> },
   { label: "Settings", path: "/settings", icon: <Settings size={16} /> },
   {
     label: "Menu1",

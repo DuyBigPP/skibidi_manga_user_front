@@ -1,5 +1,5 @@
 import React from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, Link } from "react-router-dom"
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +16,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function AdminSidebar() {
   const location = useLocation()
-  const navigate = useNavigate()
   // State to control which menu with children is open 
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null)
 
@@ -70,13 +69,15 @@ export function AdminSidebar() {
                         {item.children.map((child) => (
                           <li key={child.path}>
                             <SidebarMenuButton
-                              onClick={() => navigate(child.path)}
+                              asChild
                               isActive={location.pathname === child.path}
                               tooltip={child.label}
                               className="transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent/50 data-[active=true]:font-medium text-sm"
                             >
-                              {child.icon}
-                              <span>{child.label}</span>
+                              <Link to={child.path}>
+                                {child.icon}
+                                <span>{child.label}</span>
+                              </Link>
                             </SidebarMenuButton>
                           </li>
                         ))}
@@ -89,13 +90,15 @@ export function AdminSidebar() {
             return (
               <SidebarMenuItem key={item.path}>
                 <SidebarMenuButton
-                  onClick={() => navigate(item.path)}
+                  asChild
                   isActive={location.pathname === item.path}
                   tooltip={item.label}
                   className="transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent/50 data-[active=true]:font-medium"
                 >
-                  {item.icon}
-                  <span>{item.label}</span>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.label}</span>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             )
