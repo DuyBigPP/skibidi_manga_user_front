@@ -1,54 +1,86 @@
-# React + TypeScript + Vite
+# 📊 Modern Admin Dashboard Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional, modern admin dashboard template built with React, TypeScript, Vite, and Shadcn/UI components. Features a clean design with custom file-based routing system for scalable application development.
 
-Currently, two official plugins are available:
+![Dashboard Preview](./public/Capture.PNG)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Fast Development** - Built with Vite for lightning-fast HMR
+- **Responsive Design** - Works seamlessly across all devices
+- **TypeScript** - Full type safety and excellent developer experience
+- **File-based Routing** - Custom routing system based on file structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Frontend Framework**: React 18
+- **Build Tool**: Vite
+- **Language**: TypeScript
+- **UI Components**: Shadcn/UI
+- **Routing**: React Router DOM
+- **Styling**: Tailwind CSS
+- **Table Library**: TanStack Table
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd shadcn_base
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── common/          # Reusable components (DataTable, etc.)
+│   ├── layout/          # Layout components (Header, Sidebar, etc.)
+│   └── ui/              # Shadcn/UI components
+├── config/              # Configuration files
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions
+├── pages/               # Page components (file-based routing)
+├── routes/              # Routing configuration
+└── utils/               # Helper utilities
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Key Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Custom File-based Routing
+The application uses a custom file-based routing system that automatically generates routes based on your file structure in the `pages/` directory.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Advanced Data Tables
+Built-in DataTable component with:
+- Sorting and filtering
+- Pagination
+- Column visibility toggle
+- Row selection
+- Responsive design
+
+### Professional Admin Layout
+- Fixed header navigation
+- Collapsible sidebar
+- Breadcrumb navigation
+- User management interface
