@@ -11,11 +11,14 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { menuItems } from "@/config/menu"
-import { LucideLayoutDashboard, ChevronRight } from "lucide-react"
+import { BookOpen, ChevronRight, LogOut } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { useAuth } from "@/hooks/useAuth"
 
-export function AdminSidebar() {
+export function AppSidebar() {
   const location = useLocation()
+  const { user, logout } = useAuth()
   // State to control which menu with children is open 
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null)
 
@@ -33,10 +36,10 @@ export function AdminSidebar() {
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <LucideLayoutDashboard className="h-4 w-4" />
+            <BookOpen className="h-4 w-4" />
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-semibold">Admin Dashboard</span>
+            <span className="text-sm font-semibold">Skibidi Manga</span>
           </div>
         </div>
       </SidebarHeader>
@@ -106,15 +109,26 @@ export function AdminSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="mt-auto border-t border-border p-4">
-        <div className="flex items-center gap-2">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User" />
-            <AvatarFallback>U</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col">
-            <span className="text-sm font-medium">Admin User</span>
-            <span className="text-xs text-muted-foreground">admin@example.com</span>
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <Avatar className="h-8 w-8">
+              <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User" />
+              <AvatarFallback>{user?.username.charAt(0).toUpperCase()}</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col flex-1 min-w-0">
+              <span className="text-sm font-medium truncate">{user?.username}</span>
+              <span className="text-xs text-muted-foreground truncate">{user?.email}</span>
+            </div>
           </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full justify-start gap-2"
+            onClick={logout}
+          >
+            <LogOut className="h-4 w-4" />
+            Sign Out
+          </Button>
         </div>
       </SidebarFooter>
       <SidebarRail />

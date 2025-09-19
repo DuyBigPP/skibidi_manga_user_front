@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom"
 import { SidebarProvider } from "@/components/ui/sidebar"
-import { AdminSidebar } from "./Sidebar"
+import { AppSidebar } from "./Sidebar"
 import { BreadcrumbHeader } from "./Header"
 
-export function AdminLayout() {
+export function AppLayout() {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full overflow-hidden">
-        <AdminSidebar />
+        <AppSidebar />
         <div className="relative flex-1 min-w-0">
           <BreadcrumbHeader />
           <div className="absolute inset-0 top-14 overflow-auto">

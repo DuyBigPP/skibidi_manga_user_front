@@ -1,10 +1,10 @@
-import { AdminRoutes } from "@/routes/adminRoutes"
+import { AppRoutes } from "@/routes/appRoutes"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="app-theme">
-      <AdminRoutes />
+    <ThemeProvider defaultTheme="dark" storageKey="app-theme">
+      <AppRoutes />
     </ThemeProvider>
   )
 }
